@@ -1,0 +1,42 @@
+<h1>Recently Added</h1>
+<div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Recently Added</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+      <table  class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th> Name</th>
+            <th>Asset number</th>
+            <th>Serial number</th>
+            <th>Manufacturer</th>
+            <th>Model</th>
+            <th>Purchased From</th>
+            <th>Entered By</th>
+            
+            
+        </tr>
+        </thead>
+        <tbody>
+
+            {% for r in recent %}
+
+            <tr>
+              
+              <td>{{r.asset_name}}</td>
+              <td>{{r.asset_number|upper}}</td>
+              <td>{{r.serial_number|upper}}</td>
+              <td>{{r.manufacturer}}</td>
+              <td>{{r.model}}</td>
+              <td>{{r.purchased_from}}</td>
+              <td>{{r.post_by.first_name}} {{r.post_by.last_name}}</td>
+            </tr>
+{% endfor %}
+       
+        </tfoot>
+      </table>
+    </div>
+    <!-- /.card-body -->
+  </div>

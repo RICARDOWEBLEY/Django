@@ -1,0 +1,51 @@
+{% extends 'asset/base.html' %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+{%block title%} JNHT-AMS All Acquisitions {%endblock%}
+{%block content%}
+
+<div class="card">
+    <div class="card-header">
+      <h3 class="card-title">All Acquisitions</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+      <table id="example1" class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Asset Name</th>
+            <th>Asset Number</th>
+            <th>Serial Number</th>
+            <th>Manufacturer</th>
+            <th>Model</th>
+            <th>Purchased From</th>
+            <th>Date Acquired</th>
+        
+        </tr>
+        </thead>
+        <tbody>
+
+            {% for acquisition in acquisitions %}
+
+            <tr>
+                <td><a href="{% url 'acquisition_detail' acquisition.id %} "> {{acquisition.asset_name}}</a></td>
+                <td>{{acquisition.asset_number|upper}}</td>
+                <td>{{acquisition.serial_number|upper}}</td>
+                <td>{{acquisition.manufacturer}}</td>
+                <td>{{acquisition.model}}</td>
+                <td><a href="">{{acquisition.purchased_from}}</a></td>
+                <td>{{acquisition.date_acquired|date:"F d, Y"}}</td>
+            
+
+            </tr>
+{% endfor %}
+       
+        </tfoot>
+      </table>
+    </div>
+    <!-- /.card-body -->
+  </div>
+
+
+  {%endblock content%}

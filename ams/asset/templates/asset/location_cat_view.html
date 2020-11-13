@@ -1,0 +1,42 @@
+{% extends 'asset/base.html' %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+{%block title%} JNHT-AMS Assets in {{location.location_name}} {%endblock%}
+{%block content%}
+
+<div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Assets Located in <b class="text-danger">{{location.location_name}}</b></h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+      <table id="example1" class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Asset Number</th>
+            <th>Serial Number</th>
+            <th>Assigned To</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for trans in location.transfer_set.all %}
+
+            <tr>
+                <td>{{trans.asset}}</td>
+                <td>{{trans.asset.asset_number|upper}}</td>
+                <td>{{trans.asset.serial_number|upper}}</td>
+                <td>{{trans.assigned_to}}</td>
+            </tr>
+{% endfor %}
+
+       
+        </tfoot>
+      </table>
+    </div>
+    <!-- /.card-body -->
+  </div>
+
+
+  {%endblock content%}

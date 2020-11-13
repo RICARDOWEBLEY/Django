@@ -1,0 +1,44 @@
+{% extends 'asset/base.html' %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+{%block title%} JNHT-AMS Assets in {{department.department_name}} {%endblock%}
+{%block content%}
+
+<div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Assets Located in <b class="text-danger">{{department.department_name}}</b></h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+      <table id="example1" class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Asset Number</th>
+            <th>Serial Number</th>
+            <th>Assigned To</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for dept in department.transfer_set.all %}
+
+            <tr>
+                <td>{{dept.asset}}</td>
+                <td>{{dept.asset.asset_number|upper}}</td>
+                <td>{{dept.asset.serial_number|upper}}</td>
+                <td>{{dept.assigned_to}}</td>
+            </tr>
+{% endfor %}
+
+
+        </tfoot>
+
+      </table>
+
+    </div>
+
+  </div>
+
+
+  {%endblock content%}
